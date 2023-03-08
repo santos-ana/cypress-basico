@@ -71,8 +71,36 @@ describe('Central de Atendimento ao Cliente TAT', function () {
 
   it('exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios', function () {
     cy.contains('button', 'Enviar')
-        .click()
+      .click()
     cy.get(".error")
       .should("be.visible")
+  })
+
+  it('seleciona um produto (YouTube) por seu texto', function () {
+    cy.get('select')
+      .select('YouTube')
+      .should('have.value', 'youtube')
+  })
+
+  it('seleciona um produto (Mentoria) por seu valor (value)', function () {
+    cy.get('select')
+      .select('mentoria')
+      .should('have.value', 'mentoria')
+  })
+
+  it('seleciona um produto (Blog) por seu índice', function () {
+    cy.get('select')
+      .select(1)
+      .should('have.value', 'blog')
+  })
+
+  it('marca cada tipo de atendimento', function () {
+    cy.get('input[type="radio"]')
+      .should('have.length', 3)
+      .each(function ($radio) {
+        cy.wrap($radio)
+          .check()
+          .should('be.checked')
+      })
   })
 })
