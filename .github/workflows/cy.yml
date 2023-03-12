@@ -1,9 +1,8 @@
 name: End-to-end tests
-on: [push]
+on: push
 jobs:
   cypress-run:
-    runs-on: ubuntu-20.04
-    using: 'node16'
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
